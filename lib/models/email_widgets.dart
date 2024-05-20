@@ -13,6 +13,10 @@ class EmailWidget extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
+        child: Text(
+          email.userName![0].toUpperCase(),
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       title: Text(
         email.userName!,
