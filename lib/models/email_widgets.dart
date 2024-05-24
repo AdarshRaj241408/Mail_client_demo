@@ -18,8 +18,20 @@ class EmailWidget extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      title: Text(
-        email.userName!,
+      title: Row(
+        children: [
+          Expanded(
+            child: Text(
+              email.userName!,
+            ),
+          ),
+          Text(
+            GetTimeAgo.parse(email.dateTime!),
+            style: TextStyle(
+              fontSize: 12,
+            ),
+          ),
+        ],
       ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,9 +45,6 @@ class EmailWidget extends StatelessWidget {
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
-      ),
-      trailing: Column(
-        children: [Text(GetTimeAgo.parse(email.dateTime!))],
       ),
     );
   }

@@ -1,9 +1,10 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'models/email.dart';
-// import 'models/email_tab.dart';
 import 'models/email_widgets.dart';
 import 'personal_Page.dart';
+import 'compose_page.dart';
 
 class SecondPage extends StatefulWidget {
   @override
@@ -191,71 +192,104 @@ class _SecondPageState extends State<SecondPage>
           ],
         ),
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Container(
-            height: 130,
-            color: const Color.fromRGBO(143, 148, 251, 1),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Builder(builder: (context) {
-                    return Row(
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              Scaffold.of(context).openDrawer();
-                            },
-                            icon: Icon(
-                              Icons.menu,
-                              color: Colors.white,
-                            )),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 16.0),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(30.0),
+          Column(
+            children: [
+              Container(
+                height: 130,
+                color: const Color.fromRGBO(143, 148, 251, 1),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Builder(builder: (context) {
+                        return Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  Scaffold.of(context).openDrawer();
+                                },
+                                icon: Icon(
+                                  Icons.menu,
+                                  color: Colors.white,
+                                )),
+                            SizedBox(
+                              width: 10,
                             ),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.search, color: Colors.grey),
-                                hintText: 'Search...',
-                                border: InputBorder.none,
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    icon:
+                                        Icon(Icons.search, color: Colors.grey),
+                                    hintText: 'Search...',
+                                    border: InputBorder.none,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
+                        );
+                      }),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              personalPage(email: emails[index]),
                         ),
-                      ],
-                    );
-                  }),
-                ],
+                      );
+                    },
+                    child: EmailWidget(email: emails[index]),
+                  ),
+                  separatorBuilder: (context, index) => Divider(),
+                  itemCount: emails.length,
+                ),
               ),
-            ),
+            ],
           ),
-          Expanded(
-            child: ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => personalPage(email: emails[index]),
-                    ),
-                  );
-                },
-                child: EmailWidget(email: emails[index]),
+          Positioned(
+            bottom: 16,
+            right: 16,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ComposePage(),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(143, 148, 251, 1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                elevation: 10,
+                padding:
+                    EdgeInsets.only(left: 16, right: 16, top: 20, bottom: 20),
               ),
-              separatorBuilder: (context, index) => Divider(),
-              itemCount: emails.length,
+              child: Icon(
+                CupertinoIcons.pen,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

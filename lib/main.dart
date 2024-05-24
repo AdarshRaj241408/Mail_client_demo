@@ -40,8 +40,8 @@ class _HomePageState extends State<HomePage> {
     });
 
     if (_formKey.currentState!.validate()) {
-      if (_usernameController.text == 'IITK' &&
-          _passwordController.text == '123456') {
+      if (_usernameController.text == 'n' &&
+          _passwordController.text == '123') {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => SecondPage()),
