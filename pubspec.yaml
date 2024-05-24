@@ -37,6 +37,9 @@ dependencies:
   get_time_ago:
   flutter_dotenv: ^5.1.0
   enough_mail: ^2.1.6
+  logger: ^2.3.0
+  enough_mail_html: ^2.0.1
+  firebase_core: ^2.31.1
 
 dev_dependencies:
   flutter_test:
