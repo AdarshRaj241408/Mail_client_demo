@@ -2,6 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'enough_mail.dart';
+import 'logger.dart';
 
 class ComposePage extends StatefulWidget {
   const ComposePage({super.key});
@@ -15,6 +17,18 @@ class _ComposePageState extends State<ComposePage> {
   final _fromController = TextEditingController();
   final _toController = TextEditingController();
   final _subController = TextEditingController();
+
+  void sendEmail() {
+    // Get values from controllers
+    final from = _fromController.text;
+    final to = _toController.text;
+    final subject = _subController.text;
+    final body = _compController.text;
+
+    // Call function responsible for sending email with these values
+    EmailService.sendEmail(from, to, subject, body);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +37,11 @@ class _ComposePageState extends State<ComposePage> {
           actions: [
             Icon(CupertinoIcons.paperclip),
             SizedBox(width: 18),
-            IconButton(onPressed: () {}, icon: Icon(Icons.send)),
+            IconButton(
+                onPressed: () {
+                  sendEmail();
+                },
+                icon: Icon(Icons.send)),
             SizedBox(width: 10),
             Icon(CupertinoIcons.ellipsis_vertical),
             SizedBox(width: 15),

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "667915788099",
+    "project_id": "my-mail-client-demo",
+    "storage_bucket": "my-mail-client-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667915788099:android:197fdd52303c0b637559f6",
+        "android_client_info": {
+          "package_name": "com.demmail.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT9rItbt1bWBugIdL9eZbE7EGWZ5FTlHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667915788099:android:9d9c34e96699918a7559f6",
+        "android_client_info": {
+          "package_name": "com.example.mail_login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT9rItbt1bWBugIdL9eZbE7EGWZ5FTlHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
