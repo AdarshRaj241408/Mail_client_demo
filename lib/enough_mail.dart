@@ -3,34 +3,23 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mail_login/firebase_options.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'logger.dart';
 import 'dart:io';
 import 'package:enough_mail/enough_mail.dart';
 
-String userName = 'user.name';
-String password = 'password';
+// String userName = dotenv.env['USERNAME']!;
+String? password;
 String imapServerHost = 'imap.domain.com';
 int imapServerPort = 993;
 bool isImapServerSecure = true;
 String popServerHost = 'pop.domain.com';
 int popServerPort = 995;
 bool isPopServerSecure = true;
-String smtpServerHost = 'smtp.domain.com';
+
+String smtpServerHost = 'smtp.cc.iitk.ac.in';
 int smtpServerPort = 465;
 bool isSmtpServerSecure = true;
-
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  // await discoverExample();
-  // await imapExample();
-  // await smtpExample();
-  // await popExample();
-  // exit(0);
-}
 
 // Future<void> discoverExample() async {
 //   var email = 'someone@enough.de';
@@ -80,7 +69,9 @@ Future<void> main() async {
 /// Low level SMTP API example
 Future<void> smtpExample(
     String from, String to, String subject, String body) async {
-  final client = SmtpClient('enough.de', isLogEnabled: true);
+  final client = SmtpClient('smtp.cc.iitk.ac.in', isLogEnabled: true);
+  await dotenv.load(fileName: ".env");
+  password = dotenv.env['PASSWORD'];
 
   final fromAddress = MailAddress('', from);
   final toAddress = MailAddress('', to);
@@ -90,9 +81,9 @@ Future<void> smtpExample(
         isSecure: isSmtpServerSecure);
     await client.ehlo();
     if (client.serverInfo.supportsAuth(AuthMechanism.plain)) {
-      await client.authenticate('user.name', 'password', AuthMechanism.plain);
+      await client.authenticate(from, password!, AuthMechanism.plain);
     } else if (client.serverInfo.supportsAuth(AuthMechanism.login)) {
-      await client.authenticate('user.name', 'password', AuthMechanism.login);
+      await client.authenticate(from, password!, AuthMechanism.login);
     } else {
       return;
     }

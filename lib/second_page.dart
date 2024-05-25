@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mail_login/main.dart';
 import 'models/email.dart';
 import 'models/email_widgets.dart';
 import 'personal_Page.dart';
@@ -187,6 +188,35 @@ class _SecondPageState extends State<SecondPage>
               ),
               onTap: () {
                 // Implement action for menu item 1
+              },
+            ),
+            ListTile(
+              title: Row(
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Logout',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.arrow_forward),
+                    color: Colors.red,
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()));
               },
             ),
           ],

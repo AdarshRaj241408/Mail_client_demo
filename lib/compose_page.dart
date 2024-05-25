@@ -40,6 +40,7 @@ class _ComposePageState extends State<ComposePage> {
             IconButton(
                 onPressed: () {
                   sendEmail();
+                  Navigator.pop(context);
                 },
                 icon: Icon(Icons.send)),
             SizedBox(width: 10),
