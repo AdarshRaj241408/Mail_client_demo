@@ -4,15 +4,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mail_login/firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mail_login/models/email.dart';
 import 'logger.dart';
 import 'dart:io';
 import 'package:enough_mail/enough_mail.dart';
 
-// String userName = dotenv.env['USERNAME']!;
+String? userName;
 String? password;
-String imapServerHost = 'imap.domain.com';
-int imapServerPort = 993;
-bool isImapServerSecure = true;
+
 String popServerHost = 'pop.domain.com';
 int popServerPort = 995;
 bool isPopServerSecure = true;
@@ -21,6 +20,9 @@ String smtpServerHost = 'smtp.cc.iitk.ac.in';
 int smtpServerPort = 465;
 bool isSmtpServerSecure = true;
 
+String imapServerHost = 'newmailhost.cc.iitk.ac.in';
+int imapServerPort = 993;
+bool isImapServerSecure = true;
 // Future<void> discoverExample() async {
 //   var email = 'someone@enough.de';
 //   var config = await Discover.discover(email, isLogEnabled: false);
@@ -45,26 +47,40 @@ bool isSmtpServerSecure = true;
 // }
 
 /// Low level IMAP API usage example
-// Future<void> imapExample() async {
-//   final client = ImapClient(isLogEnabled: false);
-//   try {
-//     await client.connectToServer(imapServerHost, imapServerPort,
-//         isSecure: isImapServerSecure);
-//     await client.login(userName, password);
-//     final mailboxes = await client.listMailboxes();
-//     defaultLogger.i('mailboxes: $mailboxes');
-//     await client.selectInbox();
-//     // fetch 10 most recent messages:
-//     final fetchResult = await client.fetchRecentMessages(
-//         messageCount: 10, criteria: 'BODY.PEEK[]');
-//     for (final message in fetchResult.messages) {
-//       defaultLoggerMessage(message);
-//     }
-//     await client.logout();
-//   } on ImapException catch (e) {
-//     defaultLogger.e('IMAP failed with $e');
-//   }
-// }
+Future<List<Email>> imapExample() async {
+  final client = ImapClient(isLogEnabled: false);
+  await dotenv.load(fileName: ".env");
+  userName = dotenv.env['USERNAME'];
+  password = dotenv.env['PASSWORD'];
+  List<Email> emails = [];
+  try {
+    await client.connectToServer(imapServerHost, imapServerPort,
+        isSecure: isImapServerSecure);
+    await client.login(userName!, password!);
+    final mailboxes = await client.listMailboxes();
+    defaultLogger.i('mailboxes: $mailboxes');
+    await client.selectInbox();
+    // fetch 10 most recent messages:
+    final fetchResult = await client.fetchRecentMessages(
+        messageCount: 10, criteria: 'BODY.PEEK[]');
+    for (final message in fetchResult.messages) {
+      emails.add(
+        Email(
+          '', // profileImage
+          "", // userName
+          message.decodeSubject() ?? "", // subject
+          message.decodeTextPlainPart() ?? "", // body
+          message.decodeDate() ?? DateTime.now(), // dateTime
+          message.from?.firstOrNull?.email ?? "", // email
+        ),
+      );
+    }
+    await client.logout();
+  } on ImapException catch (e) {
+    defaultLogger.i('IMAP failed with $e');
+  }
+  return emails;
+}
 
 /// Low level SMTP API example
 Future<void> smtpExample(
@@ -157,5 +173,11 @@ class EmailService {
     defaultLogger.i('Body: $body');
     smtpExample(from, to, subject, body);
     defaultLogger.i('Email sent!');
+  }
+}
+
+class LatestMail {
+  static void recieveEmail() {
+    imapExample();
   }
 }

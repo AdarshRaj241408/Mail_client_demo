@@ -6,6 +6,7 @@ import 'models/email.dart';
 import 'models/email_widgets.dart';
 import 'personal_Page.dart';
 import 'compose_page.dart';
+import 'display_mail.dart';
 
 class SecondPage extends StatefulWidget {
   @override
@@ -27,61 +28,71 @@ class _SecondPageState extends State<SecondPage>
         'Codeforces', //userName
         "Codeforces Round 945 (Div. 2)", //subject:
         "Hello, 24012210.Welcome to the regular Codeforces round....", //body:
-        DateTime.now().subtract(const Duration(hours: 3))),
+        DateTime.now().subtract(const Duration(hours: 3)),
+        "a@gmail.com"),
     Email(
         '', //profileImage
         'JetBrains Account ', //userName
         "Develop smarter with JetBrains", //subject:
         "Hello Adarsh,Thank you for choosing JetBrains development tools!..", //body:
-        DateTime.now().subtract(const Duration(hours: 3))),
+        DateTime.now().subtract(const Duration(hours: 3)),
+        "b@gmail.com"),
     Email(
         '', //profileImage
         'Github', //userName
         "Please download your two-factor", //subject:
         "Hey AdarshRaj241408!You’ve just enabled two-factor authentication..", //body:
-        DateTime.now().subtract(const Duration(hours: 3))),
+        DateTime.now().subtract(const Duration(hours: 3)),
+        "c@gmail.com"),
     Email(
         '', //profileImage
         'Spotify', //userName
         "Fall asleep to these soothing", //subject:
         "Hi Adarsh, Our sleep timer automatically turns off your audio.", //body:
-        DateTime.now().subtract(const Duration(hours: 3))),
+        DateTime.now().subtract(const Duration(hours: 3)),
+        "d@gmail.com"),
     Email(
         '', //profileImage
         'Vercel', //userName
         "Failed production deployment", //subject:
         "Adarsh Raj (AdarshRaj241408) for leetcodeboard, via GitHub", //body:
-        DateTime.now().subtract(const Duration(hours: 3))),
+        DateTime.now().subtract(const Duration(hours: 3)),
+        "e@gmail.com"),
     Email(
         '', //profileImage
         'Spotify', //userName
         "New login to Spotify", //subject:
         "Hi Nikki, We noticed you logged in from a new device.", //body:
-        DateTime.now().subtract(const Duration(hours: 3))),
+        DateTime.now().subtract(const Duration(hours: 3)),
+        "n@gmail.com"),
     Email(
         '', //profileImage
         'Github', //userName
         "Please download your two-factor", //subject:
         "Hey AdarshRaj241408!You’ve just enabled two-factor authentication..", //body:
-        DateTime.now().subtract(const Duration(hours: 3))),
+        DateTime.now().subtract(const Duration(hours: 3)),
+        "p@gmail.com"),
     Email(
         '', //profileImage
         'Spotify', //userName
         "Fall asleep to these soothing", //subject:
         "Hi Adarsh, Our sleep timer automatically turns off your audio.", //body:
-        DateTime.now().subtract(const Duration(hours: 3))),
+        DateTime.now().subtract(const Duration(hours: 3)),
+        "y@gmail.com"),
     Email(
         '', //profileImage
         'Vercel', //userName
         "Failed production deployment", //subject:
         "Adarsh Raj (AdarshRaj241408) for leetcodeboard, via GitHub", //body:
-        DateTime.now().subtract(const Duration(hours: 3))),
+        DateTime.now().subtract(const Duration(hours: 3)),
+        "s@gmail.com"),
     Email(
         '', //profileImage
         'Spotify', //userName
         "New login to Spotify", //subject:
         "Hi Nikki, We noticed you logged in from a new device.", //body:
-        DateTime.now().subtract(const Duration(hours: 3))),
+        DateTime.now().subtract(const Duration(hours: 3)),
+        "m@gmail.com"),
   ];
 
   // @override
@@ -117,7 +128,8 @@ class _SecondPageState extends State<SecondPage>
                 ],
               ),
               onTap: () {
-                // Implement action for menu item 1
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DisplayMail()));
               },
             ),
             ListTile(
