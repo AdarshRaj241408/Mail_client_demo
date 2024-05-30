@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 //import 'package:mail_login/logger.dart';
 import 'package:mail_login/models/email.dart';
@@ -15,6 +17,12 @@ class _DisplayMailState extends State<DisplayMail> {
   List<Email> emails = [];
   bool isLoading = false;
   String errorMessage = '';
+
+  @override
+  void initState() {
+    super.initState();
+    getmail();
+  }
 
   Future<void> getmail() async {
     setState(() {
@@ -46,7 +54,7 @@ class _DisplayMailState extends State<DisplayMail> {
           'Fetch Mail',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color.fromRGBO(143, 148, 251, 1),
+        backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
         actions: [
           SizedBox(
             child: Row(
@@ -57,11 +65,10 @@ class _DisplayMailState extends State<DisplayMail> {
                     backgroundColor: Colors.white,
                   ),
                   child: const Text(
-                    'Get Mail',
+                    'Refresh',
                     style: TextStyle(color: Color.fromRGBO(143, 148, 251, 1)),
                   ),
                 ),
-                // ignore: prefer_const_constructors
                 SizedBox(
                   width: 30,
                 ),
