@@ -12,34 +12,37 @@ class personalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromRGBO(143, 148, 251, 1),
           title: Row(
             children: [
-              CircleAvatar(
-                backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
-                child: Text(
-                  email.email![0].toUpperCase(),
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              SizedBox(
-                width: 8,
-              ),
+              // CircleAvatar(
+              //   backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
+              //   child: Text(
+              //     email.email![0].toUpperCase(),
+              //     style: TextStyle(color: Colors.white),
+              //   ),
+              // ),
               Expanded(
-                child: Text(
-                  'Sender',
-                  style: TextStyle(fontSize: 20),
+                child: SizedBox(
+                  width: 5,
                 ),
               ),
+              // Expanded(
+              //   child: Text(
+              //     'Sender',
+              //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              //   ),
+              // ),
               SizedBox(
-                width: 15,
+                width: 25,
               ),
               Icon(Icons.delete_outline_outlined),
               SizedBox(
-                width: 15,
+                width: 20,
               ),
               Icon(CupertinoIcons.folder_badge_plus),
               SizedBox(
-                width: 15,
+                width: 20,
               ),
               Icon(CupertinoIcons.ellipsis_vertical),
             ],
