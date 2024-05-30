@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:mail_login/logger.dart';
 import 'package:mail_login/models/email.dart';
 import 'package:intl/intl.dart';
+import 'package:mail_login/personal_Page.dart';
 import 'enough_mail.dart';
 
 class DisplayMail extends StatefulWidget {
@@ -49,34 +50,34 @@ class _DisplayMailState extends State<DisplayMail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Fetch Mail',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
-        actions: [
-          SizedBox(
-            child: Row(
-              children: [
-                ElevatedButton(
-                  onPressed: getmail,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                  ),
-                  child: const Text(
-                    'Refresh',
-                    style: TextStyle(color: Color.fromRGBO(143, 148, 251, 1)),
-                  ),
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     'Fetch Mail',
+      //     style: TextStyle(fontWeight: FontWeight.bold),
+      //   ),
+      //   backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
+      //   actions: [
+      //     SizedBox(
+      //       child: Row(
+      //         children: [
+      //           ElevatedButton(
+      //             onPressed: getmail,
+      //             style: ElevatedButton.styleFrom(
+      //               backgroundColor: Colors.white,
+      //             ),
+      //             child: const Text(
+      //               'Refresh',
+      //               style: TextStyle(color: Color.fromRGBO(143, 148, 251, 1)),
+      //             ),
+      //           ),
+      //           SizedBox(
+      //             width: 30,
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ],
+      // ),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(),
@@ -116,7 +117,14 @@ class _DisplayMailState extends State<DisplayMail> {
                         ],
                       ),
                       subtitle: Text(email.subject!),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => personalPage(email: email),
+                          ),
+                        );
+                      },
                     );
                   },
                 ),
