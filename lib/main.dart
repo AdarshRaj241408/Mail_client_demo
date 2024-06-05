@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isObscure = true;
   String? _usernameError;
   String? _passwordError;
   String? _loginError;
@@ -155,16 +156,36 @@ class _HomePageState extends State<HomePage> {
                         children: <Widget>[
                           Container(
                             padding: EdgeInsets.all(5.0),
-                            child: TextFormField(
-                              controller: _passwordController,
-                              // obscureText: true,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Password",
-                                hintStyle: TextStyle(
-                                    color: Colors.grey[400], fontSize: 20),
-                                errorText: _passwordError,
-                              ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: _passwordController,
+                                    obscureText: _isObscure,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "Password",
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey[400],
+                                          fontSize: 20),
+                                      errorText: _passwordError,
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _isObscure =
+                                          !_isObscure; // Toggle the visibility state
+                                    });
+                                  },
+                                  icon: Icon(
+                                    _isObscure
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
+                                ),
+                              ],
                             ),
                           )
                         ],
