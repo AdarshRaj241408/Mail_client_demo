@@ -26,6 +26,7 @@ class _DisplayMailState extends State<DisplayMail> {
   }
 
   Future<void> getmail() async {
+    //connect to enough_mail.dart and call imapExample function to get the mails.
     setState(() {
       isLoading = true;
       errorMessage = '';
@@ -50,34 +51,6 @@ class _DisplayMailState extends State<DisplayMail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(
-      //     'Fetch Mail',
-      //     style: TextStyle(fontWeight: FontWeight.bold),
-      //   ),
-      //   backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
-      //   actions: [
-      //     SizedBox(
-      //       child: Row(
-      //         children: [
-      //           ElevatedButton(
-      //             onPressed: getmail,
-      //             style: ElevatedButton.styleFrom(
-      //               backgroundColor: Colors.white,
-      //             ),
-      //             child: const Text(
-      //               'Refresh',
-      //               style: TextStyle(color: Color.fromRGBO(143, 148, 251, 1)),
-      //             ),
-      //           ),
-      //           SizedBox(
-      //             width: 30,
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ],
-      // ),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(),

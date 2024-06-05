@@ -18,15 +18,14 @@ class _ComposePageState extends State<ComposePage> {
   final _toController = TextEditingController();
   final _subController = TextEditingController();
 
-  void sendEmail() {
-    // Get values from controllers
+  void sendEmail() { 
     final from = _fromController.text;
     final to = _toController.text;
     final subject = _subController.text;
     final body = _compController.text;
 
-    // Call function responsible for sending email with these values
-    EmailService.sendEmail(from, to, subject, body);
+    // Call function to send email with these values
+    EmailService.sendEmail(from, to, subject, body); //function call at enough_mail.dart
   }
 
   @override

@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, use_build_context_synchronously, unused_import
 
+import 'package:enough_mail/enough_mail.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
-import 'second_page.dart';
+import 'functions/auth_login.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -30,28 +30,30 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  void _validateAndLogin() {
-    setState(() {
-      _usernameError =
-          _usernameController.text.isEmpty ? 'Please enter the username' : null;
-      _passwordError =
-          _passwordController.text.isEmpty ? 'Please enter the password' : null;
-      _loginError = null;
+  void _setErrorMessages({
+    //This set error message function is used while authentication when the textfields entered are incoorrect and login was not successfull
+    String? usernameError,
+    String? passwordError,
+    String? loginError,
+  }) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        _usernameError = usernameError;
+        _passwordError = passwordError;
+        _loginError = loginError;
+      });
     });
+  }
 
-    if (_formKey.currentState!.validate()) {
-      if (_usernameController.text == 'n' &&
-          _passwordController.text == '123') {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SecondPage()),
-        );
-      } else if (_usernameError == null && _passwordError == null) {
-        setState(() {
-          _loginError = 'Incorrect password, please try again';
-        });
-      }
-    }
+  void _validateAndLogin() {
+    //this function is called from auth_login.dart to take in input and check whether you can login
+    validateAndLogin(
+      context: context,
+      formKey: _formKey,
+      usernameController: _usernameController,
+      passwordController: _passwordController,
+      setErrorMessages: _setErrorMessages,
+    );
   }
 
   @override
@@ -70,24 +72,29 @@ class _HomePageState extends State<HomePage> {
               //box for image
               height: 380,
               decoration: BoxDecoration(
-                  //decorating the box
-                  image: DecorationImage(
-                //with an image
-                image: AssetImage(
-                    'assets/images/final_back.png'), //importing image
-              )),
+                //decorating the box
+                image: DecorationImage(
+                  //with an image
+                  image: AssetImage(
+                      'assets/images/final_back.png'), //importing image
+                ),
+              ),
               child: Stack(
                 children: <Widget>[
                   Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 10,
-                      child: Center(
-                          child: Text("Login",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(57, 60, 104, 1),
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold))))
+                    left: 0,
+                    right: 0,
+                    bottom: 10,
+                    child: Center(
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                            color: Color.fromRGBO(57, 60, 104, 1),
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -150,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.all(5.0),
                             child: TextFormField(
                               controller: _passwordController,
-                              obscureText: true,
+                              // obscureText: true,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Password",

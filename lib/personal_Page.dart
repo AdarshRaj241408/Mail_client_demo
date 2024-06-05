@@ -15,24 +15,11 @@ class personalPage extends StatelessWidget {
           backgroundColor: Color.fromRGBO(143, 148, 251, 1),
           title: Row(
             children: [
-              // CircleAvatar(
-              //   backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
-              //   child: Text(
-              //     email.email![0].toUpperCase(),
-              //     style: TextStyle(color: Colors.white),
-              //   ),
-              // ),
               Expanded(
                 child: SizedBox(
                   width: 5,
                 ),
               ),
-              // Expanded(
-              //   child: Text(
-              //     'Sender',
-              //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              //   ),
-              // ),
               SizedBox(
                 width: 25,
               ),
@@ -56,7 +43,7 @@ class personalPage extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(1.0),
             child: Column(
               children: [
                 SizedBox(
