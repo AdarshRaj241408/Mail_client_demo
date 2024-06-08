@@ -32,7 +32,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _setErrorMessages({
-    //This set error message function is used while authentication when the textfields entered are incoorrect and login was not successfull
     String? usernameError,
     String? passwordError,
     String? loginError,
@@ -63,19 +62,14 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Column(
-          //cloumn wise kept
           children: <Widget>[
-            //one of the children is an array of widgets
             SizedBox(
               height: 30,
             ),
             Container(
-              //box for image
               height: 380,
               decoration: BoxDecoration(
-                //decorating the box
                 image: DecorationImage(
-                  //with an image
                   image: AssetImage(
                       'assets/images/final_back.png'), //importing image
                 ),
@@ -120,10 +114,7 @@ class _HomePageState extends State<HomePage> {
                         children: <Widget>[
                           Container(
                             padding: EdgeInsets.all(5.0),
-                            decoration: BoxDecoration(
-                                // border: Border(
-                                //     bottom: BorderSide(color: Colors.grey))
-                                ),
+                            decoration: BoxDecoration(),
                             child: TextFormField(
                               controller: _usernameController,
                               decoration: InputDecoration(
@@ -176,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                                   onPressed: () {
                                     setState(() {
                                       _isObscure =
-                                          !_isObscure; // Toggle the visibility state
+                                          !_isObscure; // Toggle the visibility on and off
                                     });
                                   },
                                   icon: Icon(
@@ -202,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Center(
                         child: ElevatedButton(
-                          onPressed: _validateAndLogin,
+                          onPressed: _validateAndLogin, //function called above
                           child: Text(
                             "Login",
                             style: TextStyle(

@@ -2,9 +2,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mail_login/main.dart';
-// import 'models/email.dart';
-// import 'models/email_widgets.dart';
-// import 'personal_Page.dart';
 import 'compose_page.dart';
 import 'display_mail.dart';
 
@@ -23,14 +20,15 @@ class _SecondPageState extends State<SecondPage>
           padding: EdgeInsets.zero,
           children: [
             Container(
-                height: 100,
-                color: const Color.fromRGBO(143, 148, 251, 1),
-                child: Center(
-                  child: Text(
-                    'Menu',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
-                  ),
-                )),
+              height: 100,
+              color: const Color.fromRGBO(143, 148, 251, 1),
+              child: Center(
+                child: Text(
+                  'Menu',
+                  style: TextStyle(color: Colors.white, fontSize: 24),
+                ),
+              ),
+            ),
             ListTile(
               title: Row(
                 children: [
@@ -41,10 +39,7 @@ class _SecondPageState extends State<SecondPage>
                   Text('Inbox'),
                 ],
               ),
-              onTap: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => DisplayMail()));
-              },
+              onTap: () {},
             ),
             ListTile(
               title: Row(
@@ -56,9 +51,7 @@ class _SecondPageState extends State<SecondPage>
                   Text('Starred'),
                 ],
               ),
-              onTap: () {
-                // Implement action for menu item 1
-              },
+              onTap: () {},
             ),
             ListTile(
               title: Row(
@@ -70,9 +63,7 @@ class _SecondPageState extends State<SecondPage>
                   Text('Snoozed'),
                 ],
               ),
-              onTap: () {
-                // Implement action for menu item 1
-              },
+              onTap: () {},
             ),
             ListTile(
               title: Row(
@@ -196,7 +187,8 @@ class _SecondPageState extends State<SecondPage>
                 ),
               ),
               Expanded(
-                child: DisplayMail(),  //display mail called to fetch and display mails here
+                child:
+                    DisplayMail(), //display mail called to fetch and display mails here
               ),
             ],
           ),
