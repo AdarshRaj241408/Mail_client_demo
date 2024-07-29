@@ -1,6 +1,6 @@
 # mail_login
 
-A new Flutter project.
+A new Flutter project. trying to recreate the IITK mail client can send and recieve emails.
 
 ## Getting Started
 
